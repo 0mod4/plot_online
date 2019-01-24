@@ -1,0 +1,63 @@
+<meta charset="utf-8"/>
+
+
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://code.jquery.com/jquery-latest.js"></script>
+</head>
+
+<body>
+  
+  <div id="myDiv"><!-- Plotly chart will be drawn inside this DIV --></div>
+  <div>
+	  <fieldset>
+	    <ul>
+	      <li> 
+	        <label>
+	          <input type="checkbox" id="checkbox1" name="Monday" value="Monday">
+	          Monday
+	        </label>
+	      </li>
+	      <li> 
+	        <label>
+	           <input type="checkbox" name="Tuesday" value="Tuesday">
+	           Tuesday
+	        </label>
+	      </li>
+	      <li>  
+	        <label>
+	          <input type="checkbox" name="Wednesday" value="Wednesday">
+	          Wednesday
+	        </label>
+	      </li>
+	    </ul> 
+	  </fieldset> 
+  </div>
+  <script>
+
+var checked = ['Friday'];
+$('input[type=checkbox]').change(function() {
+	checked = ['Friday'];
+	$.each($("input[type=checkbox]:checked"), function(){            
+	    checked.push($(this).val());
+	});
+
+	console.log(checked.join(","));   
+
+	var data = [
+	  {
+	    z: [[1, 20, 30, 50, 1], [20, 1, 60, 80, 30], [30, 60, 1, -10, 20]],
+	    x: checked,
+	    y: ['Morning', 'Afternoon', 'Evening'],
+	    type: 'heatmap'
+	  }
+	];
+	Plotly.react('myDiv', data, {}, {showSendToCloud: true});
+});
+
+
+
+  </script>
+</body>
+
